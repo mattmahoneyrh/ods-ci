@@ -9,7 +9,7 @@ Resource          ../../../tasks/Resources/RHODS_OLM/install/oc_install.robot
 
 *** Variables ***
 ${CODEFLARE_DIR}                codeflare-operator
-${CODEFLARE_RELEASE_ASSETS}     %{CODEFLARE_RELEASE_ASSETS=https://github.com/project-codeflare/integration-tests/releases/latest/download}
+${CODEFLARE_RELEASE_ASSETS}     %{CODEFLARE_RELEASE_ASSETS=https://github.com/opendatahub-io/distributed-workloads/releases/latest/download}
 ${NOTEBOOK_IMAGE_STREAM_NAME}   %{NOTEBOOK_IMAGE_STREAM_NAME=s2i-generic-data-science-notebook}
 ${NOTEBOOK_ADMIN_NAME}          ${TEST_USER_2.USERNAME}
 ${NOTEBOOK_ADMIN_PASSWORD}      ${TEST_USER_2.PASSWORD}
@@ -18,13 +18,21 @@ ${NOTEBOOK_USER_PASSWORD}       ${TEST_USER_3.PASSWORD}
 
 
 *** Test Cases ***
-Run TestKueueRay ODH test
-    [Documentation]    Run Go ODH test: TestKueueRay
+Run TestKueueRayCpu ODH test
+    [Documentation]    Run Go ODH test: TestKueueRayCpu
     [Tags]  ODS-2514
     ...     Tier1
     ...     DistributedWorkloads
     ...     CodeflareOperator
-    Run Codeflare ODH Test    TestMnistRay
+    Run Codeflare ODH Test    TestMnistRayCpu
+
+Run TestKueueRayGpu ODH test
+    [Documentation]    Run Go ODH test: TestKueueRayGpu
+    [Tags]  Resources-GPU
+    ...     Tier1
+    ...     DistributedWorkloads
+    ...     CodeflareOperator
+    Run Codeflare ODH Test    TestMnistRayGpu
 
 
 *** Keywords ***
